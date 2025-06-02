@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
+from bson.objectid import ObjectId
 
 # Cargar variables de entorno
 load_dotenv('connect.env')
@@ -213,6 +214,55 @@ def eliminar_proveedor(id):
     return redirect(url_for('proveedores'))
 
 
+# ================================================== Adán Gurrola Grijalva ==================================================
+# =================== AQUI COMIENZA LA SECCION DE CATEGORIAS ======================== 
+# ===== Sección de Categorías =====
+
+@app.route('/registrar_categorias', methods=['POST'])
+def registrar_categorias():
+    datos = request.form
+    categoria = {
+        "nombre": datos['nombre'],
+        "descripcion": datos['descripcion']
+    }
+    db.categorias.insert_one(categoria)
+    return redirect(url_for('categorias'))
+
+# ===== Registrar Categorias =====
+
+@app.route('/registrar_categorias', methods=['GET'])
+def mostrar_formulario_categorias():
+    return render_template('categorias/registrar_categorias.html')
+
+@app.route('/categorias')
+def categorias():
+    lista_categorias = list(db.categorias.find())
+    return render_template('categorias/categorias.html', categorias=lista_categorias)
+
+# ===== Modificar Categorias =====
+
+@app.route('/modificar_categoria/<id>', methods=['GET', 'POST'])
+def modificar_categoria(id):
+    if request.method == 'POST':
+        datos = request.form
+        db.categorias.update_one(
+            {'_id': ObjectId(id)},
+            {'$set': {
+                "nombre": datos['nombre'],
+                "descripcion": datos['descripcion']
+            }}
+        )
+        return redirect(url_for('categorias'))
+    
+    categoria = db.categorias.find_one({'_id': ObjectId(id)})
+    return render_template('categorias/modificar_categoria.html', categoria=categoria)
+
+# ===== Eliminar Categorias =====
+
+@app.route('/eliminar_categoria/<id>', methods=['POST'])
+def eliminar_categoria(id):
+    db.categorias.delete_one({'_id': ObjectId(id)})
+    return redirect(url_for('categorias'))
 
 
 

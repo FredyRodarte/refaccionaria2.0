@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}All Solutions - Registrar Categoría{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Registro de Categorías</h2>
+    <form method="POST" action="/registrar_categorias" class="p-4 border rounded shadow bg-white">
+        <div class="mb-3">
+            <label class="form-label">Nombre:</label>
+            <input type="text" name="nombre" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Descripción:</label>
+            <textarea name="descripcion" class="form-control" rows="3"></textarea>
+        </div>
+
+        <div class="d-flex">
+            <button type="submit" class="btn btn-primary me-2">Registrar</button>
+            <button type="button" class="btn btn-danger" onclick="window.location.href='/'">Cancelar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
