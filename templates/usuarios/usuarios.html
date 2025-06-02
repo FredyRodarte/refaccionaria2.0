@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Usuarios{% endblock %}
+
+{% block content %}
+    <div class="container sombraContenido">
+        <!-- Encabezado Pagina -->
+        <div class="row align-items-center">
+            <div class="col-3 titulo">
+                <h2>Usuarios</h2>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-primary">Agregar usuario <i class="fa-solid fa-user-plus"></i></button>
+            </div>
+        </div>
+        <!-- Tabla usuarios -->
+        <div class="row">
+            <div class="col">
+                <table class="table table-secondary table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Usuario</th>
+                            <th>Contraseña</th>
+                            <th>Rol</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if usuarios %}
+                            {% for user in usuarios %}
+                                <tr>
+                                    <td>{{user._id}}</td>
+                                    <td>{{user.nombre}}</td>
+                                    <td>{{user.email}}</td>
+                                    <td>{{user.nickname}}</td>
+                                    <td>{{user.contrasena}}</td>
+                                    <td>{{user.rol}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success" id="accion" onclick=""><i class="fa-solid fa-pen"></i></button>
+                                        <button type="button" class="btn btn-danger" id="accion" onclick="" ><i class="fa-solid fa-trash-can"></i></button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="12">No hay usuarios registrados</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

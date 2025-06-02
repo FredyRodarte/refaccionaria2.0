@@ -25,11 +25,22 @@ try:
 except Exception as e:
     print(f"❌ Error al conectar a MongoDB: {e}")
 
-#Rutas de la app --- 
+# Rutas de la app
+#===================================Fredy Rodarte==========================================================
 @app.route('/')
 def index():
     return render_template('index.html')
 
+# AQUI COMIENZA EL CRUD DE USUARIOS
+@app.route('/usuarios')
+def usuarios():
+    try:
+        usuarios = list(db.usuarios.find({}))
+        print(usuarios)
+        return render_template('usuarios/usuarios.html', usuarios=usuarios)
+    except Exception as e:
+        print("No se pudo realizar la consulta, Error: "+e)
+        return render_template('usuarios/usuarios.html')
 
 #===================================Eduardo Picazo ==========================================================
 # AQUI COMIEZA EL CRUD DE PRODUCTOS
