@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Modificar Proveedor{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Modificar Proveedor</h2>
+
+    <form action="{{ url_for('modificar_proveedor', id=proveedor._id) }}" method="POST" class="bg-white p-4 rounded shadow-sm">
+
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" value="{{ proveedor.nombre }}" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="contacto" class="form-label">Contacto:</label>
+            <input type="text" id="contacto" name="contacto" value="{{ proveedor.contacto }}" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono:</label>
+            <input type="text" id="telefono" name="telefono" value="{{ proveedor.telefono }}" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="correo" class="form-label">Correo:</label>
+            <input type="email" id="correo" name="correo" value="{{ proveedor.correo or '' }}" class="form-control">
+        </div>
+
+        <h4 class="mt-4">Dirección</h4>
+
+        <div class="mb-3">
+            <label for="calle" class="form-label">Calle:</label>
+            <input type="text" id="calle" name="calle" value="{{ proveedor.direccion.calle if proveedor.direccion else '' }}" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="ciudad" class="form-label">Ciudad:</label>
+            <input type="text" id="ciudad" name="ciudad" value="{{ proveedor.direccion.ciudad if proveedor.direccion else '' }}" class="form-control">
+        </div>
+
+        <div class="mb-4">
+            <label for="codigo_postal" class="form-label">Código Postal:</label>
+            <input type="text" id="codigo_postal" name="codigo_postal" value="{{ proveedor.direccion.codigo_postal if proveedor.direccion else '' }}" class="form-control">
+        </div>
+
+        <div class="d-flex gap-3">
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='/proveedores'">Cancelar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

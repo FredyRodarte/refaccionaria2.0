@@ -67,3 +67,10 @@ body {
         margin-left: 0;
     }
 }
+
+.content {
+    margin-left: 0;
+    padding: 20px;
+    transition: margin-left 0.3s;
+    margin-left: 250px;
+}

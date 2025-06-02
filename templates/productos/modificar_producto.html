@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}All Solutions - Modificar Producto {% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h1 class="mb-4">Modificar Producto</h1>
+  <form class="bg-white p-4 rounded shadow-sm" action="{{ url_for('modificar_producto', id=producto._id) }}" method="POST">
+
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" value="{{ producto.nombre }}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="descripcion" class="form-label">Descripción:</label>
+      <input type="text" id="descripcion" name="descripcion" value="{{ producto.descripcion }}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="cantidad" class="form-label">Cantidad:</label>
+      <input type="number" id="cantidad" name="cantidad" value="{{ producto.cantidad }}" class="form-control" required min="1" step="1">
+    </div>
+
+    <div class="mb-3">
+      <label for="categoria_id" class="form-label">Categoría:</label>
+      <select id="categoria_id" name="categoria_id" class="form-select" required>
+        {% for categoria in categorias %}
+          <option value="{{ categoria._id }}"
+            {% if categoria._id|string == producto.categoria_id|string %}selected{% endif %}>
+            {{ categoria.nombre }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="proveedor_id" class="form-label">Proveedor:</label>
+      <select id="proveedor_id" name="proveedor_id" class="form-select" required>
+        {% for proveedor in proveedores %}
+          <option value="{{ proveedor._id }}"
+            {% if proveedor._id|string == producto.proveedor_id|string %}selected{% endif %}>
+            {{ proveedor.nombre }}{% if proveedor.contacto %} de {{ proveedor.contacto }}{% endif %}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="mb-4">
+      <label for="ubicacion" class="form-label">Ubicación:</label>
+      <input type="text" id="ubicacion" name="ubicacion" value="{{ producto.ubicacion }}" class="form-control" required>
+    </div>
+
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+      <a href="{{ url_for('productos') }}" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

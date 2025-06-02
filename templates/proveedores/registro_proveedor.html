@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}All Solutions - Modificar Proveedor {% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Registro de Proveedores</h2>
+    <form method="POST" action="/registrar_proveedor" class="p-4 border rounded shadow bg-white">
+        <h4>Información del Proveedor</h4>
+
+        <div class="mb-3">
+            <label class="form-label">Nombre:</label>
+            <input type="text" name="nombre" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Contacto:</label>
+            <input type="text" name="contacto" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Teléfono:</label>
+            <input type="text" name="telefono" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Correo electrónico:</label>
+            <input type="email" name="correo" class="form-control" required>
+        </div>
+
+        <h4>Dirección</h4>
+
+        <div class="mb-3">
+            <label class="form-label">Calle:</label>
+            <input type="text" name="calle" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Ciudad:</label>
+            <input type="text" name="ciudad" class="form-control" required>
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label">Código Postal:</label>
+            <input type="text" name="codigo_postal" class="form-control" required>
+        </div>
+
+        <div class="d-flex">
+            <button type="submit" class="btn btn-primary me-2">Registrar</button>
+            <button type="button" class="btn btn-danger" onclick="window.location.href='/'">Cancelar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
