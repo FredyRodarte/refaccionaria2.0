@@ -59,6 +59,19 @@ body {
     font-size: 65px;
 }
 
+.titulo h1{
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: bold;
+    font-size: 50px;
+}
+
+.formulario label{
+    font-weight: 600;
+    font-style: italic;
+}
+
 /* Sidebar */
 .sidebar {
     width: 220px;

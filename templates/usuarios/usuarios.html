@@ -10,7 +10,7 @@
                 <h2>Usuarios</h2>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-primary">Agregar usuario <i class="fa-solid fa-user-plus"></i></button>
+                <button type="button" class="btn btn-primary" onclick="window.location.href='/registrar_usuario'">Agregar usuario <i class="fa-solid fa-user-plus"></i></button>
             </div>
         </div>
         <!-- Tabla usuarios -->
@@ -39,8 +39,8 @@
                                     <td>{{user.contrasena}}</td>
                                     <td>{{user.rol}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-success" id="accion" onclick=""><i class="fa-solid fa-pen"></i></button>
-                                        <button type="button" class="btn btn-danger" id="accion" onclick="" ><i class="fa-solid fa-trash-can"></i></button>
+                                        <button type="button" class="btn btn-success" id="accion" onclick="window.location.href='/editar_usuario/{{user._id}}'"><i class="fa-solid fa-pen"></i></button>
+                                        <button type="button" class="btn btn-danger" id="accion" onclick="confirmarEliminacionUsuario('{{ user._id }}')" ><i class="fa-solid fa-trash-can"></i></button>
                                     </td>
                                 </tr>
                             {% endfor %}
