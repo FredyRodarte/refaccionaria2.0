@@ -39,13 +39,13 @@
                 <td>
                   <!-- Botón para modificar -->
                   <form class="modify" action="modificar_proveedor/{{ proveedor._id }}" method="GET" style="display:inline;">
-                    <button class="btn btn-secondary" style="background-color: rgb(154, 240, 128);" type="submit">Modificar</button>
+                    <button class="btn btn-success" type="submit"><i class="fa-solid fa-pen"></i></button>
                   </form>
                   <!-- Botón para eliminar -->
                   <form class="delete" action="eliminar_proveedor/{{ proveedor._id }}" method="POST" style="display:inline;">
-                    <button class="btn btn-secondary" style="background-color: rgb(244, 69, 69);" type="submit" onclick="return confirm('¿Estás seguro de eliminar este proveedor?')">Eliminar</button>
+                    <button class="btn btn-danger" type="submit" onclick="return confirm('¿Estás seguro de eliminar este proveedor?')"><i class="fa-solid fa-trash-can"></i></button>
                   </form>
-                </td>
+              </td>
               </tr>
               {% endfor %}
             {% else %}
