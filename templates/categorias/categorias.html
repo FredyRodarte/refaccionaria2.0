@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}All Solutions - Categorías {% endblock %}
+
+{% block content %}
+<body>
+    <!-- Main Content -->
+    <div class="p-4 border rounded shadow" style="max-width: 1200px; margin: auto; background-color: white;">
+        <h1>Lista de Categorías</h1>
+
+        <!-- Botones de acción -->
+        <div class="action-buttons" style="display: inline-flex; padding: 5px; gap: 10px; margin-bottom: 20px;">
+            <button class="btn btn-secondary" style="background-color: rgb(0, 149, 255);" onclick="window.location.href='/registrar_categorias'">Agregar Categoría</button>
+            <button class="btn btn-secondary" style="background-color: rgb(244, 69, 69);" onclick="window.location.href='/'">Volver al Inicio</button>
+        </div>
+
+        <!-- Tabla de categorías -->
+        <table class="table-striped" style="width: 100%; margin-top: 20px; border-collapse: collapse; border: 1px solid #ddd;">
+            <thead class="table-light">
+                <tr class="table-primary" style="background-color: rgb(59, 66, 123); color: white;">
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if categorias %}
+                    {% for categoria in categorias %}
+                    <tr>
+                        <td>{{ categoria.nombre }}</td>
+                        <td>{{ categoria.descripcion }}</td>
+                        <td>
+                            <!-- Botón para modificar -->
+                            <form action="{{url_for('modificar_categoria', id=categoria._id)}}" method="GET" style="display:inline;">
+                                <button class="btn btn-secondary" style="background-color: rgb(154, 240, 128);" type="submit">Modificar</button>
+                            </form>
+                            <!-- Botón para eliminar -->
+                            <form action="{{url_for('eliminar_categoria', id=categoria._id)}}" method="POST" style="display:inline;">
+                                <button class="btn btn-secondary" style="background-color: rgb(244, 69, 69);" type="submit" onclick="return confirm('¿Estás seguro de eliminar esta categoría?')">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="3">No hay categorías registradas</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</body>
+{% endblock %}

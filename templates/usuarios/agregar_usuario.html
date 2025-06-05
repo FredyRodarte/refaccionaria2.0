@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Agregar Usuarios{% endblock %}
+
+{% block content %}
+    <div class="container sombraContenido d-flex flex-column min-vh-100 justify-content-center">
+        <div class="row justify-content-center">
+            <!-- Titulo de pagina -->
+            <div class="col-12 text-center mb-4 titulo">
+                <h1>Nuevo Usuario</h1>
+            </div>
+
+            <!-- Cuerpo del formulario -->
+            <div class="col-md-6">
+                <form action="{{ url_for('registrar_usuario') }}" method="POST" class="formulario p-4">
+                    <div class="mb-3">
+                        <label class="form-label">Nombre:</label>
+                        <input type="text" name="nombreA" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Correo:</label>
+                        <input type="text" name="correoA" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Usuario:</label>
+                        <input type="text" name="usuarioA" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Contraseña:</label>
+                        <input type="text" name="contrasenaA" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Rol:</label>
+                        <select name="rol_userA" id="rol_user" class="form-control" required>
+                            <option value="" disabled selected>Selecciona una opción</option>
+                            <option value="admin">Administrador</option>
+                            <option value="user">Usuario</option>
+                        </select>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary me-2">Registrar</button>
+                        <button type="button" class="btn btn-danger" onclick="window.location.href='/usuarios'">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
